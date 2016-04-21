@@ -5,14 +5,15 @@
  */
 package br.com.trabalho1.model;
 
-/**
- *
- * @author 07155422908
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Aluno {
     
     private Integer matricula;
     private String nome;
+    private List<Disciplina> disciplinas = new ArrayList<>();
 
     public Integer getMatricula() {
         return matricula;
@@ -29,6 +30,18 @@ public class Aluno {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+ 
+    
+
     
     
     

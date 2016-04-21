@@ -11,4 +11,35 @@ package br.com.trabalho1.model;
  */
 public class Disciplina {
     
+    private Integer codigo;
+    private String nome;
+    private Horario horario;
+
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Horario getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Horario horario) {
+        this.horario = horario;
+    }
+
+   
+    
+    
 }

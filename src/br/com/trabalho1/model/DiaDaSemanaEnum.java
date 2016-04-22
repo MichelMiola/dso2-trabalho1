@@ -21,8 +21,8 @@ public enum DiaDaSemanaEnum {
                return QUINTA;
            case 6:
                return SEXTA;
-               default:
-                   return null;
+            default:
+                return null;
         }
     }
     

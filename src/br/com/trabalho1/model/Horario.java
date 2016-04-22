@@ -11,22 +11,18 @@ public class Horario {
         return diaDaSemana;
     }
 
-    public void setDiaDaSemana(DiaDaSemanaEnum diaDaSemana) {
+    public Horario setDiaDaSemana(DiaDaSemanaEnum diaDaSemana) {
         this.diaDaSemana = diaDaSemana;
+        return this;
     }
 
     public Integer getHora() {
         return hora;
     }
 
-    public void setHora(Integer hora) {
+    public Horario setHora(Integer hora) {
         this.hora = hora;
+        return this;
     }
-
-    
-    
-    
-    
-    
-    
+      
 }

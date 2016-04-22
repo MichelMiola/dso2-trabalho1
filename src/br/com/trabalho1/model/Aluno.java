@@ -19,24 +19,27 @@ public class Aluno {
         return matricula;
     }
 
-    public void setMatricula(Integer matricula) {
+    public Aluno setMatricula(Integer matricula) {
         this.matricula = matricula;
+        return this;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public Aluno setNome(String nome) {
         this.nome = nome;
+        return this;
     }
 
     public List<Disciplina> getDisciplinas() {
         return disciplinas;
     }
 
-    public void setDisciplinas(List<Disciplina> disciplinas) {
+    public Aluno setDisciplinas(List<Disciplina> disciplinas) {
         this.disciplinas = disciplinas;
+        return this;
     }
 
  

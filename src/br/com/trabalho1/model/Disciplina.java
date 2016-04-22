@@ -19,24 +19,27 @@ public class Disciplina {
         return codigo;
     }
 
-    public void setCodigo(Integer codigo) {
+    public Disciplina setCodigo(Integer codigo) {
         this.codigo = codigo;
+        return this;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public Disciplina setNome(String nome) {
         this.nome = nome;
+        return this;
     }
 
     public Horario getHorario() {
         return horario;
     }
 
-    public void setHorario(Horario horario) {
+    public Disciplina setHorario(Horario horario) {
         this.horario = horario;
+        return this;
     }
 
    

@@ -20,7 +20,6 @@ public class AlunoDAOJsonImpl implements IAlunoDAO {
     
     public AlunoDAOJsonImpl() {
         json = loadJson();
-        this.populaListaDeAlunos();
     }
 
     @Override
@@ -35,6 +34,7 @@ public class AlunoDAOJsonImpl implements IAlunoDAO {
                 return buffer.lines().collect(Collectors.joining("\n"));
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
@@ -53,5 +53,5 @@ public class AlunoDAOJsonImpl implements IAlunoDAO {
         builder.registerTypeAdapter(DiaDaSemanaEnum.class, new DiaDaSemanaEnumDeserialize());
         return builder.create();
     }
-
+    
 }

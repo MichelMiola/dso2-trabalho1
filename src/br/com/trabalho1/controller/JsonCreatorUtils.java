@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.trabalho1.controller;
 
 import br.com.trabalho1.model.Aluno;
@@ -16,10 +12,6 @@ import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author 07101736955
- */
 public class JsonCreatorUtils {
     
     public static void main(String[] args) {

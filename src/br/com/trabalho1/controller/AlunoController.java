@@ -3,6 +3,7 @@ package br.com.trabalho1.controller;
 
 import br.com.trabalho1.controller.dao.IAlunoDAO;
 import br.com.trabalho1.model.Aluno;
+import br.com.trabalho1.model.exceptions.MatriculaInexistenteException;
 
  
 public class AlunoController {
@@ -14,7 +15,12 @@ public class AlunoController {
     }
     
     public Aluno buscar(Integer matricula){
-       return alunoDao.buscaPelaMatricula(matricula);
+        Aluno alunoFind = alunoDao.buscaPelaMatricula(matricula);
+       if(alunoFind != null){
+           return alunoFind;
+       }else{
+           throw new MatriculaInexistenteException();
+       }
     }
     
 }

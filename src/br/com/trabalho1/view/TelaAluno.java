@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.trabalho1.view;
 
 import br.com.trabalho1.controller.AlunoController;
+import br.com.trabalho1.model.exceptions.MatriculaInexistenteException;
 
-/**
- *
- * @author 07155422908
- */
-public class TelaAluno extends javax.swing.JFrame {
+public class TelaAluno extends Tela{
 
     /**
      * Creates new form TelaGradeHorariosFrame
@@ -41,21 +34,10 @@ public class TelaAluno extends javax.swing.JFrame {
 
         matriculaLabel.setText("Matricula");
 
-        matriculaTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                matriculaTextFieldActionPerformed(evt);
-            }
-        });
-
         pesquisaButton.setText("Pesquisar");
         pesquisaButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pesquisaButtonMouseClicked(evt);
-            }
-        });
-        pesquisaButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisaButtonActionPerformed(evt);
             }
         });
 
@@ -128,24 +110,13 @@ public class TelaAluno extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void matriculaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_matriculaTextFieldActionPerformed
-
-    private void pesquisaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisaButtonActionPerformed
-        // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_pesquisaButtonActionPerformed
-
     private void pesquisaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesquisaButtonMouseClicked
-        // TODO add your handling code here:
-        this.matriculaTextField.getText();
+        try {
+            alunoController.buscar(Integer.valueOf(matriculaTextField.getText()));
+        }catch(MatriculaInexistenteException e){
+            super.error(e.getMessage());
+        }
     }//GEN-LAST:event_pesquisaButtonMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable gradeHorariosJbable;

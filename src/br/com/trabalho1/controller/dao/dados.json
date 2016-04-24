@@ -1,1 +1,1 @@
-[{"matricula":123,"nome":"Valdir","disciplinas":[{"codigo":11,"nome":"DSO II","horario":{"diaDaSemana":{"des":"Segunda","codigo":2},"hora":1}}]}]
+[{"matricula":123,"nome":"Valdir","disciplinas":[{"codigo":11,"nome":"DSO II","horario":{"diaDaSemana":{"des":"Segunda","codigo":2},"codigo":0}}]}]

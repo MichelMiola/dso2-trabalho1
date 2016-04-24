@@ -2,7 +2,13 @@
 package br.com.trabalho1.view;
 
 import br.com.trabalho1.controller.AlunoController;
+import br.com.trabalho1.model.Aluno;
+import br.com.trabalho1.model.DiaDaSemanaEnum;
+import br.com.trabalho1.model.Disciplina;
+import br.com.trabalho1.model.Horario;
 import br.com.trabalho1.model.exceptions.MatriculaInexistenteException;
+import br.com.trabalho1.model.exceptions.MatriculaVaziaException;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaAluno extends Tela{
 
@@ -56,7 +62,7 @@ public class TelaAluno extends Tela{
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -67,6 +73,8 @@ public class TelaAluno extends Tela{
                 return canEdit [columnIndex];
             }
         });
+        gradeHorariosJbable.setAlignmentX(1.0F);
+        gradeHorariosJbable.setAlignmentY(1.0F);
         scroll.setViewportView(gradeHorariosJbable);
         if (gradeHorariosJbable.getColumnModel().getColumnCount() > 0) {
             gradeHorariosJbable.getColumnModel().getColumn(2).setResizable(false);
@@ -80,7 +88,7 @@ public class TelaAluno extends Tela{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,12 +120,23 @@ public class TelaAluno extends Tela{
 
     private void pesquisaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pesquisaButtonMouseClicked
         try {
-            alunoController.buscar(Integer.valueOf(matriculaTextField.getText()));
-        }catch(MatriculaInexistenteException e){
+            Aluno aluno = alunoController.buscar(matriculaTextField.getText());         
+            for(Disciplina disciplina : aluno.getDisciplinas()){
+                DefaultTableModel model = (DefaultTableModel) gradeHorariosJbable.getModel();
+                Horario horario = disciplina.getHorario();
+                DiaDaSemanaEnum diaSemana = horario.getDiaDaSemana();
+                model.setValueAt(valorCelula(disciplina), horario.getCodigo(), diaSemana.getCodigo()+1);
+            }
+            
+        } catch(MatriculaInexistenteException | MatriculaVaziaException e){
             super.error(e.getMessage());
         }
     }//GEN-LAST:event_pesquisaButtonMouseClicked
 
+    private String valorCelula(Disciplina disciplina){
+        return disciplina.getNome() + " / " + disciplina.getCodigo();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable gradeHorariosJbable;
     private javax.swing.JLabel matriculaLabel;

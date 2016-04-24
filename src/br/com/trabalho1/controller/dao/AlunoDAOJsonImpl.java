@@ -19,7 +19,8 @@ public class AlunoDAOJsonImpl implements IAlunoDAO {
     private final String JSON_FILE = "dados.json";
     
     public AlunoDAOJsonImpl() {
-        json = loadJson();
+        this.json = loadJson();
+        this.populaListaDeAlunos();
     }
 
     @Override

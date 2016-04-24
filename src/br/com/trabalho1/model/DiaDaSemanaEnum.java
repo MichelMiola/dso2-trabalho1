@@ -4,22 +4,22 @@ package br.com.trabalho1.model;
  
 public enum DiaDaSemanaEnum {
      
-    SEGUNDA("Segunda", 2), TERCA("Terça", 3), QUARTA("Quarta", 4), QUINTA("Quinta", 5), SEXTA("Sexta", 6);
+    SEGUNDA("Segunda", 0), TERCA("Terça", 1), QUARTA("Quarta", 2), QUINTA("Quinta", 3), SEXTA("Sexta", 4);
     
     private final Integer codigo;
     private final String des;
     
     public static DiaDaSemanaEnum getByCodigo(Integer codigo){
         switch(codigo){
-            case 2:
+            case 0:
                 return SEGUNDA;
-           case 3:
+           case 1:
                return TERCA;
-           case 4:
+           case 2:
                return QUARTA;
-           case 5:
+           case 3:
                return QUINTA;
-           case 6:
+           case 4:
                return SEXTA;
             default:
                 return null;
@@ -27,7 +27,7 @@ public enum DiaDaSemanaEnum {
     }
     
     private DiaDaSemanaEnum(String des, Integer codigo){
-        this.des =des;
+        this.des = des;
         this.codigo = codigo;
     }
 

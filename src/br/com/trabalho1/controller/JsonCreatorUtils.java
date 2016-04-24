@@ -30,7 +30,7 @@ public class JsonCreatorUtils {
         //TODO: alterar dia e hora para uma enum
         Horario horario = new Horario();
         horario.setDiaDaSemana(DiaDaSemanaEnum.SEGUNDA);
-        horario.setHora(1);
+        horario.setCodigo(1);
         d.setHorario(horario);
         disciplinas.add(d);
         

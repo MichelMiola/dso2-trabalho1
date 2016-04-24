@@ -5,6 +5,7 @@ import br.com.trabalho1.model.Aluno;
 import br.com.trabalho1.model.DiaDaSemanaEnum;
 import br.com.trabalho1.model.Disciplina;
 import br.com.trabalho1.model.Horario;
+import br.com.trabalho1.model.Sala;
 import br.com.trabalho1.model.converters.DiaDaSemanaEnumDeserialize;
 import br.com.trabalho1.model.converters.DiaDaSemanaEnumSerialize;
 import com.google.gson.Gson;
@@ -23,28 +24,39 @@ public class JsonCreatorUtils {
         List<Disciplina> disciplinas = new ArrayList<>();
         
         
+        
+        
         Disciplina dso = new Disciplina();
         dso.setCodigo(11);
         dso.setNome("DSO II");
         
+        Sala sala = new Sala();
+        sala.setLocal("CTC");
+        sala.setNumero(314);
         
         Horario horario = new Horario();
+        horario.setSala(sala);
         horario.setDiaDaSemana(DiaDaSemanaEnum.SEGUNDA);
         horario.setHora(10);
-        
         dso.addHorario(horario);
         
+        sala = new Sala();
+        sala.setLocal("CTC");
+        sala.setNumero(311);
+        
         horario = new Horario();
+        horario.setSala(sala);
         horario.setDiaDaSemana(DiaDaSemanaEnum.QUARTA);
         horario.setHora(10);
         dso.addHorario(horario);
+        
         
         disciplinas.add(dso);
 
         
         Aluno aluno = new Aluno();
         aluno.setDisciplinas(disciplinas);
-        aluno.setMatricula(123);
+        aluno.setMatricula(14201126);
         aluno.setNome("Valdir");
         
         

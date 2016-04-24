@@ -6,6 +6,7 @@ public class Horario {
     
     private DiaDaSemanaEnum diaDaSemana;
     private Integer hora;
+    private Sala sala;
 
     public DiaDaSemanaEnum getDiaDaSemana() {
         return diaDaSemana;
@@ -23,5 +24,22 @@ public class Horario {
     public void setHora(Integer hora) {
         this.hora = hora;
     }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return this.getSala().getLocal()+"-"+this.sala.getNumero();
+    }
       
+    
+    
 }

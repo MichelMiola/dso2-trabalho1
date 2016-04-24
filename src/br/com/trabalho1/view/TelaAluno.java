@@ -40,6 +40,7 @@ public class TelaAluno extends Tela{
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextNomeAluno = new javax.swing.JTextPane();
         jLabel2 = new javax.swing.JLabel();
+        limparButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +75,7 @@ public class TelaAluno extends Tela{
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false
@@ -91,14 +92,6 @@ public class TelaAluno extends Tela{
         gradeHorariosJbable.setAlignmentX(1.0F);
         gradeHorariosJbable.setAlignmentY(1.0F);
         scroll.setViewportView(gradeHorariosJbable);
-        if (gradeHorariosJbable.getColumnModel().getColumnCount() > 0) {
-            gradeHorariosJbable.getColumnModel().getColumn(1).setResizable(false);
-            gradeHorariosJbable.getColumnModel().getColumn(2).setResizable(false);
-            gradeHorariosJbable.getColumnModel().getColumn(3).setResizable(false);
-            gradeHorariosJbable.getColumnModel().getColumn(4).setResizable(false);
-            gradeHorariosJbable.getColumnModel().getColumn(5).setResizable(false);
-            gradeHorariosJbable.getColumnModel().getColumn(6).setResizable(false);
-        }
 
         jLabel1.setText("Nome:");
 
@@ -107,28 +100,37 @@ public class TelaAluno extends Tela{
 
         jLabel2.setText("Horarios");
 
+        limparButton.setText("Limpar");
+        limparButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(matriculaLabel)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(matriculaTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(pesquisaButton)))
-                .addContainerGap(33, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 791, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(matriculaLabel)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(matriculaTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(pesquisaButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(limparButton)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(33, 33, 33))
                     .addComponent(jLabel2)
                     .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
@@ -139,7 +141,8 @@ public class TelaAluno extends Tela{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(matriculaLabel)
                     .addComponent(matriculaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pesquisaButton))
+                    .addComponent(pesquisaButton)
+                    .addComponent(limparButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -165,7 +168,7 @@ public class TelaAluno extends Tela{
                 List<Horario> horarios = disciplina.getHorarios();
                 for(Horario horario: horarios){
                     DiaDaSemanaEnum diaSemana = horario.getDiaDaSemana();
-                    model.setValueAt(valorCelula(disciplina), horario.getHora(), diaSemana.getCodigo()+1);
+                    model.setValueAt(valorCelula(disciplina)+horario, horario.getHora(), diaSemana.getCodigo()+1);
                 }                               
             }
             
@@ -174,8 +177,19 @@ public class TelaAluno extends Tela{
         }
     }//GEN-LAST:event_pesquisaButtonMouseClicked
 
+    private void limparButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparButtonActionPerformed
+        this.jTextNomeAluno.setText("");
+        this.matriculaTextField.setText("");
+        DefaultTableModel model = (DefaultTableModel) gradeHorariosJbable.getModel();
+        for (int i = 0; i < model.getRowCount(); i++) {
+            for (int j = 1; j < model.getColumnCount(); j++) {
+                model.setValueAt("", i, j);
+            }
+        }
+    }//GEN-LAST:event_limparButtonActionPerformed
+
     private String valorCelula(Disciplina disciplina){
-        return disciplina.getNome() + " / " + disciplina.getCodigo();
+        return disciplina.getNome() + " / " + disciplina.getCodigo() + " ";
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -184,6 +198,7 @@ public class TelaAluno extends Tela{
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextNomeAluno;
+    private javax.swing.JButton limparButton;
     private javax.swing.JLabel matriculaLabel;
     private javax.swing.JTextField matriculaTextField;
     private javax.swing.JButton pesquisaButton;

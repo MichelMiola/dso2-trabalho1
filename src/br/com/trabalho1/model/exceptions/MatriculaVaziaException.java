@@ -8,3 +8,4 @@ public class MatriculaVaziaException extends RuntimeException{
        super("O campo matricula esta vazio");
     }
 }
+  

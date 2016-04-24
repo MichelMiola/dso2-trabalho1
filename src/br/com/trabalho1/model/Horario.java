@@ -5,7 +5,7 @@ package br.com.trabalho1.model;
 public class Horario {
     
     private DiaDaSemanaEnum diaDaSemana;
-    private Integer codigo;
+    private Integer hora;
 
     public DiaDaSemanaEnum getDiaDaSemana() {
         return diaDaSemana;
@@ -16,13 +16,12 @@ public class Horario {
         return this;
     }
 
-    public Integer getCodigo() {
-        return codigo;
+    public Integer getHora() {
+        return hora;
     }
 
-    public Horario setCodigo(Integer hora) {
-        this.codigo = hora;
-        return this;
+    public void setHora(Integer hora) {
+        this.hora = hora;
     }
       
 }

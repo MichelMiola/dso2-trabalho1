@@ -8,6 +8,7 @@ import br.com.trabalho1.model.Disciplina;
 import br.com.trabalho1.model.Horario;
 import br.com.trabalho1.model.exceptions.MatriculaInexistenteException;
 import br.com.trabalho1.model.exceptions.MatriculaVaziaException;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class TelaAluno extends Tela{
@@ -49,6 +50,16 @@ public class TelaAluno extends Tela{
 
         gradeHorariosJbable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {"07:30", null, null, null, null, null, null},
+                {"08:20", null, null, null, null, null, null},
+                {"09:10", null, null, null, null, null, null},
+                {"10:10", null, null, null, null, null, null},
+                {"11:00", null, null, null, null, null, null},
+                {"13:30", null, null, null, null, null, null},
+                {"14:20", null, null, null, null, null, null},
+                {"15:10", null, null, null, null, null, null},
+                {"16:20", null, null, null, null, null, null},
+                {"17:10", null, null, null, null, null, null},
                 {"18:30", null, null, null, null, null, null},
                 {"19:20", null, null, null, null, null, null},
                 {"20:20", null, null, null, null, null, null},
@@ -77,10 +88,12 @@ public class TelaAluno extends Tela{
         gradeHorariosJbable.setAlignmentY(1.0F);
         scroll.setViewportView(gradeHorariosJbable);
         if (gradeHorariosJbable.getColumnModel().getColumnCount() > 0) {
+            gradeHorariosJbable.getColumnModel().getColumn(1).setResizable(false);
             gradeHorariosJbable.getColumnModel().getColumn(2).setResizable(false);
             gradeHorariosJbable.getColumnModel().getColumn(3).setResizable(false);
             gradeHorariosJbable.getColumnModel().getColumn(4).setResizable(false);
             gradeHorariosJbable.getColumnModel().getColumn(5).setResizable(false);
+            gradeHorariosJbable.getColumnModel().getColumn(6).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,8 +124,8 @@ public class TelaAluno extends Tela{
                 .addGap(18, 18, 18)
                 .addComponent(separador, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addGap(79, 79, 79))
         );
 
         pack();
@@ -123,9 +136,11 @@ public class TelaAluno extends Tela{
             Aluno aluno = alunoController.buscar(matriculaTextField.getText());         
             for(Disciplina disciplina : aluno.getDisciplinas()){
                 DefaultTableModel model = (DefaultTableModel) gradeHorariosJbable.getModel();
-                Horario horario = disciplina.getHorario();
-                DiaDaSemanaEnum diaSemana = horario.getDiaDaSemana();
-                model.setValueAt(valorCelula(disciplina), horario.getCodigo(), diaSemana.getCodigo()+1);
+                List<Horario> horarios = disciplina.getHorarios();
+                for(Horario horario: horarios){
+                    DiaDaSemanaEnum diaSemana = horario.getDiaDaSemana();
+                    model.setValueAt(valorCelula(disciplina), horario.getHora(), diaSemana.getCodigo()+1);
+                }                               
             }
             
         } catch(MatriculaInexistenteException | MatriculaVaziaException e){

@@ -23,16 +23,24 @@ public class JsonCreatorUtils {
         List<Disciplina> disciplinas = new ArrayList<>();
         
         
-        Disciplina d = new Disciplina();
-        d.setCodigo(11);
-        d.setNome("DSO II");
+        Disciplina dso = new Disciplina();
+        dso.setCodigo(11);
+        dso.setNome("DSO II");
         
-        //TODO: alterar dia e hora para uma enum
+        
         Horario horario = new Horario();
         horario.setDiaDaSemana(DiaDaSemanaEnum.SEGUNDA);
-        horario.setCodigo(1);
-        d.setHorario(horario);
-        disciplinas.add(d);
+        horario.setHora(10);
+        
+        dso.addHorario(horario);
+        
+        horario = new Horario();
+        horario.setDiaDaSemana(DiaDaSemanaEnum.QUARTA);
+        horario.setHora(10);
+        dso.addHorario(horario);
+        
+        disciplinas.add(dso);
+
         
         Aluno aluno = new Aluno();
         aluno.setDisciplinas(disciplinas);
@@ -51,14 +59,15 @@ public class JsonCreatorUtils {
         
         String json = gson.toJson(alunos);
         
+        System.out.print(json);
          
         
         
-       builder = new GsonBuilder();
+       /*builder = new GsonBuilder();
        builder.registerTypeAdapter(DiaDaSemanaEnum.class, new DiaDaSemanaEnumDeserialize());
        Gson deserialize = builder.create();
        Aluno[] fromJson = deserialize.fromJson(json, Aluno[].class);
-       System.err.println(fromJson[0].getDisciplinas().get(0).getHorario().getDiaDaSemana());
+       System.err.println(fromJson[0].getDisciplinas().get(0).getHorarios().get(0).getDiaDaSemana());*/
     }
     
 }

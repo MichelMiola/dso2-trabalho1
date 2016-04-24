@@ -1,11 +1,13 @@
-
 package br.com.trabalho1.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Disciplina {
-    
+
     private Integer codigo;
     private String nome;
-    private Horario horario;
+    private List<Horario> horarios = new ArrayList<>();
 
     public Integer getCodigo() {
         return codigo;
@@ -25,16 +27,12 @@ public class Disciplina {
         return this;
     }
 
-    public Horario getHorario() {
-        return horario;
+    public List<Horario> getHorarios() {
+        return horarios;
     }
 
-    public Disciplina setHorario(Horario horario) {
-        this.horario = horario;
-        return this;
+    public void addHorario(Horario horario) {
+        this.horarios.add(horario);
     }
 
-   
-    
-    
 }
